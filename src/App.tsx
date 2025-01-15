@@ -13,10 +13,14 @@ import styles from './App.module.css'
 import { SearchBar } from './components/search-bar'
 
 function App() {
-  const { data: currenciesData, isLoading: isLoadingCurrency, error: currencyError } = useFetchData<ICurrencyItemApi[]>({
-    url: CURRENCY_URL,
+  const {
+    data: currenciesData,
+    isLoading: isLoadingCurrency,
+    error: currencyError
+  } = useFetchData<ICurrencyItemApi[]>({
+    url: CURRENCY_URL
   })
-  const { data: marketsData, error: marketError } = useFetchData<IMarketItemApi[]>({
+  const { data: marketsData } = useFetchData<IMarketItemApi[]>({
     url: MARKET_URL,
     interval: 10000
   })
@@ -74,14 +78,12 @@ function App() {
     )
   }
 
-  if (currencyError || marketError) {
+  if (currencyError) {
     return (
       <div className={styles.app}>
         <div className={styles.alert}>
           <span>
-            {currencyError && `Currency error: ${currencyError}`}
-            <br />
-            {marketError && `Market error: ${marketError}`}
+            {currencyError}
             <br />
             Please refresh the page.
           </span>
@@ -93,24 +95,24 @@ function App() {
   return (
     <div className={styles.app}>
       <div>
-      <div className={classnames(styles.wrapper, styles.headerWrapper)}>
-        <SearchBar value={search} onChange={setSearch} />
-        <select name="secondary" className={styles.select}>
-          {secondaryCurrencies.map(item => {
-            return <option key={item.name} value={item.ticker}>{item.name.toUpperCase()}</option>
-          })}
-        </select>
-      </div>
-      <div className={styles.wrapper}>
-        <table className={styles.table}>
-          <TableHeader
-            sortKey={sortKey}
-            sortDirection={sortDirection}
-            onSort={handleSort}
-          />
-          <TableBody data={sortedData} />
-        </table>
-      </div>
+        <div className={classnames(styles.wrapper, styles.headerWrapper)}>
+          <SearchBar value={search} onChange={setSearch} />
+          <select name="secondary" className={styles.select}>
+            {secondaryCurrencies.map(item => {
+              return <option key={item.name} value={item.ticker}>{item.name.toUpperCase()}</option>
+            })}
+          </select>
+        </div>
+        <div className={styles.wrapper}>
+          <table className={styles.table}>
+            <TableHeader
+              sortKey={sortKey}
+              sortDirection={sortDirection}
+              onSort={handleSort}
+            />
+            <TableBody data={sortedData} />
+          </table>
+        </div>
       </div>
     </div>
   )

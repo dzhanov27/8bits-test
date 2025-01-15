@@ -17,8 +17,8 @@ export const TableBody: React.FC<ITableBodyProps> = ({ data }) => {
         return (
           <tr key={item.ticker} className={styles.tr}>
             <td className={styles.coinNameCell}>
-                <span>
-                  <a href="#" className={styles.coinName}>{item.name.toUpperCase()}</a>
+                <span className={styles.coinName}>
+                  {item.name.toUpperCase()}
                 </span>
               <span className={styles.coinTicker}>{item.ticker}</span>
             </td>

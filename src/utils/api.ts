@@ -4,7 +4,7 @@ import axiosRetry from 'axios-retry'
 axiosRetry(axios, {
   retries: 3,
   retryDelay: (retryCount) => {
-    return retryCount * 3000
+    return retryCount * 10000
   },
   retryCondition: (error) => {
     return error.response?.status === 429

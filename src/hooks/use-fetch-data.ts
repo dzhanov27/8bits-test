@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import { fetchData } from '../utils/api'
 
 interface UseFetchDataOptions {
@@ -11,20 +11,20 @@ export const useFetchData = <T>({ url, interval }: UseFetchDataOptions) => {
   const [isLoading, setIsLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
 
-  const fetchDataAsync = useCallback(async () => {
-    try {
-      setIsLoading(true)
-      const result = await fetchData<T>(url)
-      setData(result)
-      setError(null)
-    } catch (err) {
-      setError((err as Error).message)
-    } finally {
-      setIsLoading(false)
-    }
-  }, [url])
-
   useEffect(() => {
+    const fetchDataAsync = async () => {
+      try {
+        setIsLoading(true)
+        const result = await fetchData<T>(url)
+        setData(result)
+        setError(null)
+      } catch (err) {
+        setError((err as Error).message)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
     if (!interval) {
       fetchDataAsync()
       return
