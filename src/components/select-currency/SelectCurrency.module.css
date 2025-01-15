@@ -1,0 +1,9 @@
+.select {
+  padding: 8px 12px;
+}
+
+@media screen and (max-width: 720px) {
+  .select {
+    padding: 4px 8px;
+  }
+}

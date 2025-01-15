@@ -37,10 +37,6 @@
   gap: 24px;
 }
 
-.select {
-  padding: 8px 12px;
-}
-
 .table {
   width: 100%;
   background-color: #ffffff;
@@ -55,10 +51,6 @@
 }
 
 @media screen and (max-width: 720px) {
-  .select {
-    padding: 4px 8px;
-  }
-
   .wrapper {
     padding: 12px;
   }

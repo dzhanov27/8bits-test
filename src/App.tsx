@@ -3,14 +3,15 @@ import classnames from 'classnames'
 
 import { TableHeader } from './components/table-header'
 import { TableBody } from './components/table-body'
+import { SearchBar } from './components/search-bar'
+import { SelectCurrency } from './components/select-currency'
 import { useFetchData } from './hooks/use-fetch-data'
 import { getCurrencies } from './utils/getCurrencies'
+import { dataMapper } from './utils/dataMapper'
 import { ICurrencyItemApi, IMarketItem, IMarketItemApi, ISecondaryCurrency } from './types'
 import { CURRENCY_URL, MARKET_URL } from './constants'
-import { dataMapper } from './utils/dataMapper'
 
 import styles from './App.module.css'
-import { SearchBar } from './components/search-bar'
 
 function App() {
   const {
@@ -25,6 +26,7 @@ function App() {
     interval: 10000
   })
   const [secondaryCurrencies, setSecondaryCurrencies] = useState<ISecondaryCurrency[]>([])
+  const [selected, setSelected] = useState<string>('')
   const [tableData, setTableData] = useState<IMarketItem[]>([])
   const [search, setSearch] = useState<string>('')
   const [sortKey, setSortKey] = useState<string | null>(null)
@@ -97,11 +99,7 @@ function App() {
       <div>
         <div className={classnames(styles.wrapper, styles.headerWrapper)}>
           <SearchBar value={search} onChange={setSearch} />
-          <select name="secondary" className={styles.select}>
-            {secondaryCurrencies.map(item => {
-              return <option key={item.name} value={item.ticker}>{item.name.toUpperCase()}</option>
-            })}
-          </select>
+          <SelectCurrency options={secondaryCurrencies} onChange={setSelected} value={selected} />
         </div>
         <div className={styles.wrapper}>
           <table className={styles.table}>
