@@ -16,7 +16,7 @@ function App() {
   const { data: currenciesData, isLoading: isLoadingCurrency, error: currencyError } = useFetchData<ICurrencyItemApi[]>({
     url: CURRENCY_URL,
   })
-  const { data: marketsData, isLoading: isLoadingMarket } = useFetchData<IMarketItemApi[]>({
+  const { data: marketsData, error: marketError } = useFetchData<IMarketItemApi[]>({
     url: MARKET_URL,
     interval: 10000
   })
@@ -74,10 +74,18 @@ function App() {
     )
   }
 
-  if (currencyError) {
+  if (currencyError || marketError) {
     return (
       <div className={styles.app}>
-        <div className={styles.alert}><span>Error: {currencyError}<br/>Refresh the page please!</span></div>
+        <div className={styles.alert}>
+          <span>
+            {currencyError && `Currency error: ${currencyError}`}
+            <br />
+            {marketError && `Market error: ${marketError}`}
+            <br />
+            Please refresh the page.
+          </span>
+        </div>
       </div>
     )
   }

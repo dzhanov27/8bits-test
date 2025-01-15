@@ -2,8 +2,8 @@ import { useState, useEffect, useCallback } from 'react'
 import { fetchData } from '../utils/api'
 
 interface UseFetchDataOptions {
-  interval?: number
   url: string
+  interval?: number
 }
 
 export const useFetchData = <T>({ url, interval }: UseFetchDataOptions) => {
