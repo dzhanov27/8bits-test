@@ -1,0 +1,119 @@
+.tr td {
+  border-top: 1px solid #dddddd;
+  padding: 16px 0;
+  white-space: nowrap;
+}
+
+.coinNameCell {
+  width: 30%;
+  text-align: start;
+}
+
+.coinName {
+  font-weight: 500;
+  font-size: 16px;
+  margin-right: 12px;
+  color: #000000;
+}
+
+.coinName:hover {
+  color: #006644;
+}
+
+.coinTicker {
+  color: #444;
+}
+
+.changeWrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.changeUp {
+  color: #00aa44;
+}
+
+.changeDown {
+  color: #ff0000;
+}
+
+.changeAmount {
+  font-size: 12px;
+  color: #444;
+}
+
+.buttonCell {
+  padding-right: 0;
+  width: fit-content;
+}
+
+.buttonWrapper {
+  display: flex;
+  gap: 12px;justify-content: flex-end;
+}
+
+.button {
+  cursor: pointer;
+  border: 2px solid #006644;
+  background-color: #ffffff;
+  font-size: 14px;
+  font-weight: 400;
+  border-radius: 4px;
+  padding: 4px 24px;
+}
+
+.buttonPrimary {
+  background-color: #006644;
+  color: #ffffff;
+}
+
+.buttonPrimary:hover {
+  opacity: 0.8;
+}
+
+.buttonSecondary:hover {
+  background-color: #006644;
+  color: #ffffff;
+}
+
+@media screen and (max-width: 480px) {
+  .tr td {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .coinTicker {
+    display: none;
+  }
+
+  .coinName {
+    font-size: 14px;
+  }
+
+  .coinNameCell {
+    width: unset;
+  }
+
+  .changeWrapper {
+    justify-content: flex-end;
+  }
+
+  .changeWrapper {
+    display: block;
+  }
+
+  .changeAmount {
+    display: none;
+  }
+
+  .buttonCell {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .coinNameCell {
+    width: 25%;
+  }
+}

@@ -1,0 +1,60 @@
+.app {
+  background-color: #006644;
+  min-height: 100vh;
+}
+
+.loading {
+  padding: 48px 0;
+}
+
+.wrapper {
+  background-color: #fff;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  justify-content: center;
+}
+
+.searchWrapper {
+  padding-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 24px;
+}
+
+.searchInput {
+  width: 240px;
+  padding: 0 12px;
+}
+
+.select {
+  padding: 8px 12px;
+}
+
+.table {
+  width: 100%;
+  background-color: #ffffff;
+  margin: 12px 0;
+  color: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  empty-cells: show;
+  border-collapse: collapse;
+  border-spacing: 0;
+  text-align: end;
+}
+
+@media screen and (max-width: 720px) {
+  .searchInput {
+    width: 100%;
+  }
+
+  .select {
+    padding: 4px 8px;
+  }
+
+  .wrapper {
+    padding: 12px;
+  }
+}

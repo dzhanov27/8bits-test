@@ -1,0 +1,23 @@
+.th {
+  padding: 16px 0;
+  white-space: nowrap;
+}
+
+.coinNameCell {
+  text-align: start;
+}
+
+.sortArrow {
+  color: #aaaaaa;
+}
+
+.selectedArrow {
+  color: #000000;
+}
+
+@media screen and (max-width: 720px) {
+  .th {
+    padding: 14px 0;
+    font-size: 12px;
+  }
+}
