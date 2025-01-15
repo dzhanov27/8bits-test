@@ -27,7 +27,7 @@ export const TableHeader: React.FC<TableHeaderProps> = ({ sortKey, sortDirection
           onClick={() => onSort(header.key)}
           style={{ cursor: 'pointer' }}
         >
-          {header.label}{' '}
+          {header.label}
           <span
             className={classnames(
               styles.sortArrow,

@@ -1,9 +1,7 @@
 .container {
   width: 100%;
-  margin-top: 24px;
   display: flex;
   justify-content: flex-end;
-  gap: 24px;
 }
 
 .searchInput {
@@ -11,14 +9,8 @@
   padding: 0 12px;
 }
 
-.searchInput:focus-visible {
-  outline-color: #006644;
-}
-
-.select {
-  padding: 8px 12px;
-}
-
-.select:focus-visible {
-  outline-color: #006644;
+@media screen and (max-width: 720px) {
+  .searchInput {
+    width: 100%;
+  }
 }

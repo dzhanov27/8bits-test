@@ -10,9 +10,10 @@ import { CURRENCY_URL, MARKET_URL } from './constants'
 import { dataMapper } from './utils/dataMapper'
 
 import styles from './App.module.css'
+import { SearchBar } from './components/search-bar'
 
 function App() {
-  const { data: currenciesData, isLoading: isLoadingCurrency } = useFetchData<ICurrencyItemApi[]>({
+  const { data: currenciesData, isLoading: isLoadingCurrency, error: currencyError } = useFetchData<ICurrencyItemApi[]>({
     url: CURRENCY_URL,
   })
   const { data: marketsData, isLoading: isLoadingMarket } = useFetchData<IMarketItemApi[]>({
@@ -65,16 +66,27 @@ function App() {
     }
   }
 
+  if (isLoadingCurrency) {
+    return (
+      <div className={styles.app}>
+        <div className={styles.alert}><span>Loading ...</span></div>
+      </div>
+    )
+  }
+
+  if (currencyError) {
+    return (
+      <div className={styles.app}>
+        <div className={styles.alert}><span>Error: {currencyError}<br/>Refresh the page please!</span></div>
+      </div>
+    )
+  }
+
   return (
     <div className={styles.app}>
-      <div className={classnames(styles.wrapper, styles.searchWrapper)}>
-        <input
-          type="text"
-          className={styles.searchInput}
-          placeholder="Search for coin"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
+      <div>
+      <div className={classnames(styles.wrapper, styles.headerWrapper)}>
+        <SearchBar value={search} onChange={setSearch} />
         <select name="secondary" className={styles.select}>
           {secondaryCurrencies.map(item => {
             return <option key={item.name} value={item.ticker}>{item.name.toUpperCase()}</option>
@@ -90,6 +102,7 @@ function App() {
           />
           <TableBody data={sortedData} />
         </table>
+      </div>
       </div>
     </div>
   )

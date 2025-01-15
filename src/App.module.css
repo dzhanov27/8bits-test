@@ -3,6 +3,20 @@
   min-height: 100vh;
 }
 
+.alert {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.alert span {
+  background-color: #ffffff;
+  margin: auto;
+  text-align: center;
+  padding: 48px 64px;
+}
+
 .loading {
   padding: 48px 0;
 }
@@ -16,16 +30,11 @@
   justify-content: center;
 }
 
-.searchWrapper {
+.headerWrapper {
   padding-top: 24px;
   display: flex;
   justify-content: flex-end;
   gap: 24px;
-}
-
-.searchInput {
-  width: 240px;
-  padding: 0 12px;
 }
 
 .select {
@@ -46,10 +55,6 @@
 }
 
 @media screen and (max-width: 720px) {
-  .searchInput {
-    width: 100%;
-  }
-
   .select {
     padding: 4px 8px;
   }
