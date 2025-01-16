@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import classnames from 'classnames'
 
 import { TableHeader } from './components/table-header'
@@ -30,11 +30,14 @@ function App() {
   })
   const [secondaryCurrencies, setSecondaryCurrencies] = useState<ISecondaryCurrency[]>([])
   const [selected, setSelected] = useState<string>('')
-  const [tableData, setTableData] = useState<IMarketItem[]>([])
   const [search, setSearch] = useState<string>('')
   const [sortKey, setSortKey] = useState<string | null>(null)
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc')
+  const [tableData, setTableData] = useState<IMarketItem[]>([])
+  const [filteredData, setFilteredData] = useState<IMarketItem[]>([]);
+  const [sortedData, setSortedData] = useState<IMarketItem[]>([]);
 
+  // getting secondary currencies for select
   useEffect(() => {
     if (currenciesData) {
       const result = getCurrencies(currenciesData, 'Secondary')
@@ -42,6 +45,7 @@ function App() {
     }
   }, [currenciesData])
 
+  // mapping fetched data for table
   useEffect(() => {
     if (currenciesData && marketsData) {
       const result = dataMapper(currenciesData, marketsData)
@@ -49,22 +53,29 @@ function App() {
     }
   }, [currenciesData, marketsData])
 
-  const filteredData = useMemo(() => {
-    return tableData.filter(
-      (item) =>
-        item.name.toLowerCase().includes(search.toLowerCase())
-    )
-  }, [search, tableData])
+  // filtering table by search value
+  useEffect(() => {
+    const filtered = tableData.filter((item) =>
+      item.name.toLowerCase().includes(search.toLowerCase())
+    );
+    setFilteredData(filtered);
+  }, [search, tableData]);
 
-  const sortedData = useMemo(() => {
-    if (!sortKey) return filteredData
-    const key = sortKey as keyof IMarketItem
-    return [...filteredData].sort((a, b) => {
-      if (a[key] < b[key]) return sortDirection === 'asc' ? -1 : 1
-      if (a[key] > b[key]) return sortDirection === 'asc' ? 1 : -1
-      return 0
-    })
-  }, [filteredData, sortKey, sortDirection])
+  // sorting table by sort keys
+  useEffect(() => {
+    if (!sortKey) {
+      setSortedData(filteredData);
+      return;
+    }
+
+    const key = sortKey as keyof IMarketItem;
+    const sorted = [...filteredData].sort((a, b) => {
+      if (a[key] < b[key]) return sortDirection === 'asc' ? -1 : 1;
+      if (a[key] > b[key]) return sortDirection === 'asc' ? 1 : -1;
+      return 0;
+    });
+    setSortedData(sorted);
+  }, [filteredData, sortKey, sortDirection]);
 
   const handleSort = (key: string) => {
     if (sortKey === key) {
