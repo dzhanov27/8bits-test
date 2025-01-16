@@ -14,7 +14,7 @@ import { ICurrencyItemApi, IMarketItem, IMarketItemApi, ISecondaryCurrency } fro
 import { CURRENCY_URL, MARKET_URL } from './constants'
 
 import styles from './App.module.css'
-import global from '../src/css/Global.module.css'
+import global from './css/Global.module.css'
 
 function App() {
   const {
