@@ -2,9 +2,9 @@ import React from 'react'
 import classnames from 'classnames'
 
 import { IMarketItem } from '../../types'
+import { convertWithCommas } from '../../utils/convertWithCommas'
 
 import styles from './TableBody.module.css'
-import { convertWithCommas } from '../../utils/convertWithCommas'
 
 interface ITableBodyProps {
   data: IMarketItem[]

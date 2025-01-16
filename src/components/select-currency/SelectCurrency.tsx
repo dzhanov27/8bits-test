@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
-import styles from './SelectCurrency.module.css'
 import { ISecondaryCurrency } from '../../types'
+import styles from './SelectCurrency.module.css'
 
 interface ISelectCurrencyProps {
   options: ISecondaryCurrency[]

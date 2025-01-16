@@ -6,7 +6,7 @@ interface ISearchBarProps {
   onChange: (value: string) => void;
 }
 
-export const SearchBar: React.FC<ISearchBarProps> = ({value, onChange}) => {
+export const SearchBar: React.FC<ISearchBarProps> = ({ value, onChange }) => {
   return (
     <div className={styles.container}>
       <input

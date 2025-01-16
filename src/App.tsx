@@ -5,6 +5,8 @@ import { TableHeader } from './components/table-header'
 import { TableBody } from './components/table-body'
 import { SearchBar } from './components/search-bar'
 import { SelectCurrency } from './components/select-currency'
+import { Loading } from './components/loading'
+import { Error } from './components/error'
 import { useFetchData } from './hooks/use-fetch-data'
 import { getCurrencies } from './utils/getCurrencies'
 import { dataMapper } from './utils/dataMapper'
@@ -12,6 +14,7 @@ import { ICurrencyItemApi, IMarketItem, IMarketItemApi, ISecondaryCurrency } fro
 import { CURRENCY_URL, MARKET_URL } from './constants'
 
 import styles from './App.module.css'
+import global from '../src/css/Global.module.css'
 
 function App() {
   const {
@@ -74,35 +77,29 @@ function App() {
 
   if (isLoadingCurrency) {
     return (
-      <div className={styles.app}>
-        <div className={styles.alert}><span>Loading ...</span></div>
+      <div className={styles.container}>
+        <Loading />
       </div>
     )
   }
 
   if (currencyError) {
     return (
-      <div className={styles.app}>
-        <div className={styles.alert}>
-          <span>
-            {currencyError}
-            <br />
-            Please refresh the page.
-          </span>
-        </div>
+      <div className={styles.container}>
+        <Error errorMessage={currencyError} />
       </div>
     )
   }
 
   return (
-    <div className={styles.app}>
+    <div className={styles.container}>
       <div>
-        <div className={classnames(styles.wrapper, styles.headerWrapper)}>
+        <div className={classnames(global.wrapper, global.headerWrapper)}>
           <SearchBar value={search} onChange={setSearch} />
           <SelectCurrency options={secondaryCurrencies} onChange={setSelected} value={selected} />
         </div>
-        <div className={styles.wrapper}>
-          <table className={styles.table}>
+        <div className={global.wrapper}>
+          <table className={global.table}>
             <TableHeader
               sortKey={sortKey}
               sortDirection={sortDirection}

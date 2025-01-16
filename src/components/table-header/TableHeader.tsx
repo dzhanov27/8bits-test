@@ -3,13 +3,13 @@ import classnames from 'classnames'
 
 import styles from './TableHeader.module.css'
 
-interface TableHeaderProps {
+interface ITableHeaderProps {
   sortKey: string | null;
   sortDirection: 'asc' | 'desc';
   onSort: (key: string) => void;
 }
 
-export const TableHeader: React.FC<TableHeaderProps> = ({ sortKey, sortDirection, onSort }) => {
+export const TableHeader: React.FC<ITableHeaderProps> = ({ sortKey, sortDirection, onSort }) => {
   const headers = [
     { key: 'name', label: 'Coin' },
     { key: 'price', label: 'Price' },
