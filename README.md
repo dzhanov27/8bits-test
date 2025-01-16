@@ -4,6 +4,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 # Dependency installation
 
+Use npm version `>=10.0.0`, node version `>=22.0.0` and run:
+
 ### `npm install`
 
 ## Available Scripts
